@@ -1,0 +1,44 @@
+<html>
+{%load static%}
+<head>
+  <link rel="stylesheet" href="{%static 'signup_reg.css'%}">
+  <link href="https://fonts.googleapis.com/css?family=Ubuntu" rel="stylesheet">
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <link rel="stylesheet" href="{%static 'font-awesome.min.css'%}">
+  <script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/js/bootstrap.bundle.min.js"></script>
+  <title>Investor Details</title>
+</head>
+
+<body>
+  {% include  'messages.html'%}
+  <div class="main">
+    <p class="sign" align="center">Enter Investor Details</p>
+    <form class="form1" method="post" action="">
+      {% csrf_token %}
+      <!--<input id = "username" name = "Username" class="un " type="hidden" align="center" placeholder="Username" value=>
+      <input id = "lastname" name = "lastname" type="text" align="center" placeholder="Password" id="password">
+      <input id = "cfmpwd" name = "confirm_password" type="password" class="un " type="text" align="center" placeholder="confirm_password">
+      <input id = "email" name = "email" class="un " type="text" align="center" placeholder="Email">
+      -->
+      <input id = "Contact_no" name = "Contact_no" class="un " type="text" align="center" placeholder="Contact_no">
+      <input id = "Pan_card_no" name = "Pan_card_no" class="un " type="text" align="center" placeholder="Pan_card_no">
+      <input id = "Address_Line" name = "Address_Line" class="un " type="text" align="center" placeholder="Address_Line">
+      <input id = "State" name = "State" class="un " type="text" align="center" placeholder="State">
+      <input id = "city" name = "city" class="un " type="text" align="center" placeholder="city">
+      <input id = "District" name = "District" class="un " type="text" align="center" placeholder="District">
+      <input id = "Pin_code" name = "Pin_code" class="un " type="text" align="center" placeholder="Pin_code">
+
+      <!--<div class = "un">
+      {{ form.as_p }}
+      </div>-->
+      <button class="submit" align="center" value = "submit"> Submit</button>
+      <!--{% if user.is_authenticated%}
+          <h3>Hello, {{  user.username }} </h3>
+          <a href = {% url 'logout' %}>   signout </a>
+      {% endif %}-->
+    </form>  
+    </div>
+  </body>
+</html>

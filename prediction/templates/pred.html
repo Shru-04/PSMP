@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+{%load static%}
+<html>
+<head>
+    <title> {{Name}} Predictions </title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+<style>
+* {
+  box-sizing: border-box;
+}
+
+body {
+  font-family: Arial, Helvetica, sans-serif; color:white;
+  background-color : #202121;
+  
+}
+
+.shrujan{
+  width : 700px;
+  border-width:300px;
+}
+
+.surya{
+  position: absolute;
+  top:120px;
+  left:1150px;
+  padding: 16px 32px;
+  border : 12px;
+  background-color: green;
+  color: white;
+  font-size: 16px;
+}
+
+.sumanth{
+  position: absolute;
+  top:200px;
+  left:1150px;
+  border : 12px;
+  padding: 16px 32px;
+  color: white;
+  background-color: #4CAF50;
+  font-size: 16px;    
+}
+
+.sumit{
+  position: absolute;
+  top:280px;
+  left:1120px;
+  
+}
+
+table, th, td {
+  border: 1px solid white;
+  border-collapse: collapse;
+}
+th, td {
+  background-color: #1b1c1e;
+  padding : 10px;
+}
+
+/* Float four columns side by side */
+.column {
+  float: left;
+  width: 25%;
+  padding: 0 10px;
+}
+
+/* Remove extra left and right margins, due to padding */
+.row {margin: 0 -5px;}
+
+/* Clear floats after the columns */
+.row:after {
+  content: "";
+  display: table;
+  clear: both;
+}
+
+/* Responsive columns */
+@media screen and (max-width: 600px) {
+  .column {
+    width: 100%;
+    display: block;
+    margin-bottom: 20px;
+  }
+}
+
+/* Style the counter cards */
+.card {
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+  padding: 35px;
+  text-align: center;
+  background-color: #f1f1f1;
+
+/* anchor */
+a.button {
+  -webkit-appearance: button;
+  -moz-appearance: button;
+  appearance: button;
+
+  text-decoration: none;
+  color: initial;
+}
+}
+</style>
+</head>
+<body>
+  <div>
+  <ul>
+    <h1 align = "center"><strong>{{Name}} Predictions</h1> </strong> <br>
+    <iframe srcdoc="{{G2}}" height="500px" width="100%" style="border:none;" title="Stock Info"></iframe>
+    <iframe srcdoc="{{G3}}" height="500px" width="100%" style="border:none;" title="Stock Info"></iframe>
+    <iframe srcdoc="{{G1}}" height="500px" width="100%" style="border:none;" title="Stock Info"></iframe>
+    <br>
+    <a class="btn btn-primary btn-lg btn-block" href="{% url 'databases:apidata'%}?name={{Name}}" role="button">GO BACK</a>
+    <a href = "" class = "button">  </a>
+ <br> 
+
+</body>
+</html>

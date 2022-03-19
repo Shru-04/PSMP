@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+{%load static%}
+<html>
+<head>
+    <title> {{name}} Info </title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<style>
+* {
+  box-sizing: border-box;
+}
+
+body {
+  font-family: Arial, Helvetica, sans-serif; color:white;
+  background-color : #202121;
+  
+}
+
+.shrujan{
+  width : 700px;
+  border-width:300px;
+}
+
+.surya{
+  position: absolute;
+  top:120px;
+  left:1150px;
+  padding: 16px 32px;
+  border : 12px;
+  background-color: green;
+  color: white;
+  font-size: 16px;
+}
+
+.sumanth{
+  position: absolute;
+  top:200px;
+  left:1150px;
+  border : 12px;
+  padding: 16px 32px;
+  color: white;
+  background-color: #4CAF50;
+  font-size: 16px;    
+}
+
+.sumit{
+  position: absolute;
+  top:280px;
+  left:1120px;
+  
+}
+
+table, th, td {
+  border: 1px solid white;
+  border-collapse: collapse;
+}
+th, td {
+  background-color: #1b1c1e;
+  padding : 10px;
+}
+
+/* Float four columns side by side */
+.column {
+  float: left;
+  width: 25%;
+  padding: 0 10px;
+}
+
+/* Remove extra left and right margins, due to padding */
+.row {margin: 0 -5px;}
+
+/* Clear floats after the columns */
+.row:after {
+  content: "";
+  display: table;
+  clear: both;
+}
+
+/* Responsive columns */
+@media screen and (max-width: 600px) {
+  .column {
+    width: 100%;
+    display: block;
+    margin-bottom: 20px;
+  }
+}
+
+/* Style the counter cards */
+.card {
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+  padding: 35px;
+  text-align: center;
+  background-color: #f1f1f1;
+}
+
+/*Button*/
+.but {
+  background-color: white;
+  border: 2px solid black;
+  color: green;
+  padding: 5px 10px;
+  text-align: center;
+  display: inline-block;
+  font-size: 20px;
+  margin: 10px 30px;
+  cursor: pointer;
+}
+</style>
+<script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/js/bootstrap.bundle.min.js"></script>
+</head>
+<body>
+  {% include  'messages.html'%}
+  <div class="shrujan">
+  <ul>
+    <h1><strong>{{name}}  {{stock.ISIN}}</h1> </strong>
+    {%if invests.usersum != None%}
+    <h2> <br> Current Hold Value :  {{invests.usersum}} <br> Holdings Quantity :{{invests.totalstk}} <br>
+      {% if invests.totalstk > 0 %}
+       Current Value :{{invests.stksum}} 
+       {% endif %} 
+       <br>
+      </h2> 
+    <table>
+      
+      <tr>
+        <th>Date of Purchase  </th>
+        <th>Quantity  </th>
+        <th>Value</th>
+        <th>Transaction</th>
+      </tr>
+      {%for x in bought%}
+      <tr>
+        <td>{{x.Date_of_Purchased}}</td>
+        {% if  x.Quantity|get_digit:"1" %}
+        <td>{{x.Quantity|get_digit:"1"}}</td>
+        {% else %}
+        <td>{{x.Quantity|slice:"1:"}}</td>
+        {% endif %}
+        <td> {{x.Purchased_Value}}</td>
+        <td> {{x.Transaction_Mode}} </td>
+      </tr>
+      {%endfor%}
+      
+    </table> 
+   {%else%}
+   <h4><strong>No investments for this Stock</h4> </strong>
+      {%endif%}
+      <div class = "addinfo">
+    <ul>
+      <strong><h3><li>Current Price : {{stock.Current_price}}</li></h3></strong>
+   
+    <li>Stock open : {{stock.Open}}</li>
+    <li>Previous Close : {{stock.Prev_Close}}</li>
+    <li>Day low : {{stock.Day_low}}</li>
+    <li>Day High : {{stock.Day_high}}</li>
+    <li>Beta : {{stock.Beta}}</li>
+
+    <li>Volume : {{stock.Volume}}</li>
+    <li>Regular market open : {{stock.Regular_market_open}}</li>
+    <li>Revenue Growth : {{stock.Revenue_growth}}</li>
+   
+    </ul>
+  </div>
+</ul>
+</div>
+<h2 align = "center"> <a style="color: #3ce61e;" href = "{%url 'prediction:index'%}?name={{name}}"> View Predictions </a></h2>
+<form method="post" action="{%url 'databases:buy_sell'%}?name={{name}}">
+  {%csrf_token%}
+  <input class="surya" type="submit" value="BUY" name ="Buy">
+  <input class="sumanth" type="submit" value="SELL" name="Sell">
+  <input class="sumit" type="text" id="Quantity" name = "Quantity" placeholder="Enter Quantity">
+  </form>
+    <iframe src="{%url 'databases:stocks'%}?name={{name}}" height="600px" width="100%" title="Stock Info"></iframe>
+ <br>  <h2> Company Details : </h2>
+  <ul>
+    <li>Sector : {{cmpy.Sector}}</li>
+    <li>Industry : {{cmpy.Industry}}</li>
+    <li>Website : <a href = {{cmpy.Website}}>{{cmpy.Website}}</a></li>
+    <li>Gross Profit : {{cmpy.Gross_Profit}} Rupees</li>
+    <li>Business Summary : {{cmpy.Business_Summary}}</li>
+    <ul>
+<h2>Latest News Trends</h2>
+
+<div class="row">
+    {%for i in news%}
+  <div class="column">
+    <div class="card">
+      <h3><a href = "{{i.link}}">{{i.title}}</a></h3>
+      {% comment %} <p>Some text</p>
+      <p>Some text</p> {% endcomment %}
+    </div>
+  </div>
+    {%endfor%}
+</div> <br>
+    <a href="{% url 'dashboard:index'%}"> <button class = "but"> GO BACK </button> </a>
+  {% comment %} <div class="column">
+    <div class="card">
+      <h3>Card 2</h3>
+      <p>Some text</p>
+      <p>Some text</p>
+    </div>
+  </div>
+  
+  <div class="column">
+    <div class="card">
+      <h3>Card 3</h3>
+      <p>Some text</p>
+      <p>Some text</p>
+    </div>
+  </div>
+  
+  <div class="column">
+    <div class="card">
+      <h3>Card 4</h3>
+      <p>Some text</p>
+      <p>Some text</p>
+    </div>
+  </div>
+</div> {% endcomment %}
+
+</body>
+</html>

@@ -1,0 +1,37 @@
+<html>
+{%load static%}
+<head>
+  <link rel="stylesheet" href="{%static 'styles.css'%}">
+  <link rel="stylesheet" href="{%static 'font-awesome.min.css'%}">
+  
+  <link href="https://fonts.googleapis.com/css?family=Ubuntu" rel="stylesheet">
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <link rel="stylesheet" href="{%static 'font-awesome.min.css'%}">
+  <!--link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" -->
+  <script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/js/bootstrap.bundle.min.js"></script>
+  <title>Sign in</title>
+</head>
+
+<body>
+  {% include  'messages.html'%}
+  <div class="main">
+    <p class="sign" align="center">Sign in</p>
+    <form class="form1" method="post" action="{% url 'logins' %}">
+      {% csrf_token %}
+      <input id = "username" name = "username" class="un " type="text" align="center" placeholder="Username">
+      <input class="pass" name = "password" type="password" align="center" placeholder="Password" id="password">
+      <!--<div class = "un">
+      {{ form.as_p }}
+      </div>-->
+      <button class="submit" align="center" value = "submit"> Sign in</button> 
+      {% if user.is_authenticated%}
+          <h3>Hello, {{  user.username }} </h3>
+          <a href = {% url 'logout' %}>   signout </a>
+      {% endif %}
+    </form>
+    <p align="center"> <a href = {%url 'reset'%}> <b> Forgot Password ? </b></a>  </p>
+    </div>
+  </body>
+</html>
