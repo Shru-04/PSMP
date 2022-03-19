@@ -32,7 +32,7 @@ def redis_data():
         r.save()
     print("Done")
 
-schedule.every(3).minutes.do(redis_data)
+schedule.every(1).minutes.do(redis_data)
 
 while(True):
     schedule.run_pending()
