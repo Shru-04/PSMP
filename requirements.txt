@@ -1,0 +1,17 @@
+Django>=3.0,<4.0
+gunicorn
+datetime
+#json
+redis
+yfinance
+#numpy
+plotly
+#random
+# matplotlib
+#keras
+#tensorflow
+#time
+schedule
+pandas
+# pmdarima
+#pytz

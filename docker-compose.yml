@@ -1,0 +1,32 @@
+version: "3.9"
+
+services:
+  web:
+    build: .
+    command: bash -c "python manage.py makemigrations && python manage.py migrate && gunicorn -b 0.0.0.0:8000 stockplatform.wsgi"
+#&& python manage.py runserver 0.0.0.0:8000 --insecure"
+    volumes:
+      - .:/code
+    ports:
+      - "8000:8000"
+    links:
+      - "redis"
+  redis:
+    image: "redis:alpine"
+    working_dir: /data
+    volumes:
+      - .:/data
+    command: redis-server ./Redis/redis.conf
+    ports:
+      - "6379:6379"
+  nginx:
+    image: "nginx:latest"
+    working_dir: /data
+    volumes:
+      - .:/data
+    command: bash -c "cp /data/nginx/mynginx.conf /etc/nginx/conf.d/default.conf && nginx -t && nginx -g 'daemon off;' && service nginx restart"  # include "mkdir sites-enabled" if ur using first time --- cd /etc/nginx && mkdir sites-enabled && cd sites-enabled && 
+    ports:
+      - "8081:8081"
+    links:
+      - "web"
+      - "redis"

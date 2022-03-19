@@ -10,7 +10,7 @@ def index(request):
         #return HttpResponse("ok")
         if request.method == "GET" and request.GET['name'] != '':
             context = {}
-            r = redis.StrictRedis(host='localhost',port='6379',db=0,password='Stock@123')
+            r = redis.StrictRedis(host='redis',port='6379',db=0,password='Stock@123')
             name = request.GET['name']
             i = name + '_pred'
             res = json.loads(r.get(i))   #Retriving data from json         

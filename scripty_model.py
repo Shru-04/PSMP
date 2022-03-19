@@ -108,7 +108,7 @@ def redis_pred():
         fig2 = go.Figure(data=[tracefig2], layout=layoutfig2)
         fig = go.Figure(data=[trace1, trace2], layout=layout)
 
-        r = redis.StrictRedis(host='localhost',port='6379',db=0,password='Stock@123')
+        r = redis.StrictRedis(host='redis',port='6379',db=0,password='Stock@123')
         i = name + '_pred'
         res = []
         context={}

@@ -20,7 +20,7 @@ def get_topnews(ticker_obj,p):
 
 def redis_data():
     # Link : https://stackoverflow.com/questions/15219858/how-to-store-a-complex-object-in-redis-using-redis-py
-    r = redis.StrictRedis(host='localhost',port='6379',db=0,password='Stock@123')
+    r = redis.StrictRedis(host='redis',port='6379',db=0,password='Stock@123')
     p = 5
     stock_name =  ['AXISBANK.NS','BHARTIARTL.NS','CIPLA.NS','HCLTECH.NS','ICICIBANK.NS','ITC.NS','KOTAKBANK.NS','JSWSTEEL.NS','MARUTI.NS','POWERGRID.NS','SBIN.NS','TATAMOTORS.NS','TATASTEEL.NS','TCS.NS','WIPRO.NS','EICHERMOT.NS','GRASIM.NS', 'HINDUNILVR.NS', 'IOC.NS', 'LT.NS', 'NESTLEIND.NS', 'NTPC.NS','SUNPHARMA.NS', 'TECHM.NS', 'ULTRACEMCO.NS']
     for i in stock_name:

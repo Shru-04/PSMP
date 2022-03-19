@@ -45,7 +45,7 @@ def user_stock(request):
 
 def redis_data(request):
     # Link : https://stackoverflow.com/questions/15219858/how-to-store-a-complex-object-in-redis-using-redis-py
-    r = redis.StrictRedis(host='localhost',port='6379',db=0,password='Stock@123')
+    r = redis.StrictRedis(host='redis',port='6379',db=0,password='Stock@123')
     if request.user.is_authenticated:
         if request.method == 'GET':
             name = request.GET['name']
