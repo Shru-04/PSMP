@@ -75,10 +75,11 @@
             <div class="number">{{dashvals.0}}</div>
             <div class="indicator">
               {% if dashvals.0 > dashvals.1 %}
-              <i class='bx bx-up-arrow-alt'></i>
+              <i class='bx bx-down-arrow-alt down'></i>
               <span class="text">More than Current</span>
               {% else %}
-                <i class='bx bx-down-arrow-alt down'></i>
+                <i class='bx bx-up-arrow-alt'></i>
+               
                 <span class="text">Lesser than Current</span>
               {% endif%}
             </div>
