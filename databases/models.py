@@ -18,7 +18,7 @@ class Stock(models.Model) :
 class Investor(models.Model):
     Username = models.CharField(max_length=1000,primary_key=True,unique=True)
     Password = models.CharField(max_length=1000,unique=True)
-    First_Name = models.CharField(max_length=1000,unique=True)
+    First_Name = models.CharField(max_length=1000)
     Last_Name = models.CharField(max_length=1000)
     Email_id = models.CharField(max_length=1000,validators=[validate_email],unique=True)
     Contact_no = models.CharField(max_length=13,unique=True)

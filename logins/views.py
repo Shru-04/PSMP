@@ -62,7 +62,7 @@ def user_reg(request):
             confirm_password = form.cleaned_data['confirm_password']
             fn = form.cleaned_data['first_name']
             email = form.cleaned_data['email']
-            if (password != confirm_password or User.objects.filter(email=email).exists() or User.objects.filter(password=password).exists() or User.objects.filter(first_name=fn).exists()):
+            if (password != confirm_password or User.objects.filter(email=email).exists() or User.objects.filter(password=password).exists()):
                 print(1)
                 raise ValidationError(
                     "password and confirm_password does not match"
